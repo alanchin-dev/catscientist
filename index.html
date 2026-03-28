@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cat Scientist — Products for Cats & Cat Parents</title>
@@ -816,7 +817,7 @@
     </div>
   </div>
   <div class="hero-right">
-    <img src="hero.png" alt="Cat Scientist">
+    <img src="hero.webp" alt="Cat Scientist">
   </div>
 </section>
 
@@ -960,6 +961,7 @@
   // Slideshow
   let currentSlide = 0;
   const slideCount = 2;
+  let slideTimer = setInterval(autoAdvance, 10000);
 
   function goToSlide(index) {
     currentSlide = index;
@@ -967,11 +969,13 @@
     const dots = document.querySelectorAll('.slideshow-dot');
     imgs.forEach((img, i) => img.classList.toggle('active', i === index));
     dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+    clearInterval(slideTimer);
+    slideTimer = setInterval(autoAdvance, 10000);
   }
 
-  setInterval(() => {
+  function autoAdvance() {
     goToSlide((currentSlide + 1) % slideCount);
-  }, 10000);
+  }
 
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
